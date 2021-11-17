@@ -27,7 +27,7 @@ class ComparatorApplicationTests {
     @Test
     void shouldSaveProduct() {
         // GIVEN
-        Product product = new Product(UUID.randomUUID().toString(), "PRODUCT CREATE", ProductType.FOOD);
+        Product product = new Product(UUID.randomUUID().toString(), "PRODUCT CREATE", 1.5, ProductType.FOOD);
 
         // WHEN
         Product saved = productRepository.save(product);
@@ -41,7 +41,7 @@ class ComparatorApplicationTests {
     void shouldGetSavedProduct() {
         // GIVEN
         String id = UUID.randomUUID().toString();
-        Product product = new Product(id, "PRODUCT GET", ProductType.FOOD);
+        Product product = new Product(id, "PRODUCT GET", 1.5, ProductType.FOOD);
 
         // WHEN
         productRepository.save(product);
@@ -59,7 +59,7 @@ class ComparatorApplicationTests {
     void shouldUpdateSavedProduct() {
         // GIVEN
         String id = UUID.randomUUID().toString();
-        Product product = new Product(id, "PRODUCT UPDATE", ProductType.FOOD);
+        Product product = new Product(id, "PRODUCT UPDATE", 1.5, ProductType.FOOD);
 
         // WHEN
         Product saved = productRepository.save(product);
@@ -79,7 +79,7 @@ class ComparatorApplicationTests {
     void shouldDeleteSavedProduct() {
         // GIVEN
         String id = UUID.randomUUID().toString();
-        Product product = new Product(id, "PRODUCT DELETE", ProductType.FOOD);
+        Product product = new Product(id, "PRODUCT DELETE", 1.5, ProductType.FOOD);
 
         // WHEN
         productRepository.save(product);
@@ -92,8 +92,8 @@ class ComparatorApplicationTests {
     @Test
     void shouldFindAllProduct() {
         // GIVEN
-        Product productOne = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 1", ProductType.FOOD);
-        Product productTwo = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 2", ProductType.OTHER);
+        Product productOne = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 1", 1.5, ProductType.FOOD);
+        Product productTwo = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 2", 1.5, ProductType.OTHER);
 
         // WHEN
         productRepository.save(productOne);

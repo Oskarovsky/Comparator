@@ -1,24 +1,36 @@
 package com.oskarro.comparator.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.oskarro.comparator.common.AbstractBaseEntity;
+import lombok.*;
 import org.springframework.data.redis.core.RedisHash;
 
-import java.io.Serializable;
+import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @RedisHash("Product")
 @NoArgsConstructor
-@AllArgsConstructor
-public class Product implements Serializable {
+public class Product extends AbstractBaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    public Product(String name, Double size, ProductType productType) {
+        super.setId(UUID.randomUUID().toString());
+        this.name = name;
+        this.size = size;
+        this.productType = productType;
+    }
+
+    public Product(String id, String name, Double size, ProductType productType) {
+        super.setId(id);
+        this.name = name;
+        this.size = size;
+        this.productType = productType;
+    }
+
     private String name;
+    private Double size;
     private ProductType productType;
 }
 

@@ -2,13 +2,13 @@ package com.oskarro.comparator.service;
 
 import com.oskarro.comparator.common.AbstractBaseRepository;
 import com.oskarro.comparator.common.AbstractBaseServiceBean;
-import com.oskarro.comparator.model.Product;
+import com.oskarro.comparator.model.Item;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService extends AbstractBaseServiceBean<Product, String> {
+public class ItemService extends AbstractBaseServiceBean<Item, String> {
 
-    public ProductService(AbstractBaseRepository<Product, String> abstractBaseRepository) {
+    public ItemService(AbstractBaseRepository<Item, String> abstractBaseRepository) {
         super(abstractBaseRepository);
     }
 }

@@ -18,7 +18,7 @@ public class ProductGateway {
 
     @GetMapping("/")
     public ResponseEntity<Iterable<Product>> getAll() {
-        return new ResponseEntity<Iterable<Product>>(productRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
 
     }
 
@@ -27,13 +27,13 @@ public class ProductGateway {
         Product product = productRepository
                 .findById(productId)
                 .orElseThrow(Exception::new);
-        return new ResponseEntity<Product>(product, HttpStatus.OK);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @PostMapping("/")
     public ResponseEntity<Product> create(@RequestBody Product product) {
-        productRepository.save(product);
-        return new ResponseEntity<Product>(product, HttpStatus.OK);
+        Product save = productRepository.save(product);
+        return new ResponseEntity<>(save, HttpStatus.OK);
     }
 
     @DeleteMapping("/{productId}")
