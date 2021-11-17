@@ -16,14 +16,14 @@ public class Product extends AbstractBaseEntity {
     private static final long serialVersionUID = 1L;
 
     public Product(String name, Double size, ProductType productType) {
-        super.setId(UUID.randomUUID().toString());
+        super.setHash(UUID.randomUUID().toString());
         this.name = name;
         this.size = size;
         this.productType = productType;
     }
 
     public Product(String id, String name, Double size, ProductType productType) {
-        super.setId(id);
+        super.setHash(id);
         this.name = name;
         this.size = size;
         this.productType = productType;

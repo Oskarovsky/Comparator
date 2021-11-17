@@ -1,7 +1,6 @@
 package com.oskarro.comparator.gateway;
 
 import com.oskarro.comparator.model.Provider;
-import com.oskarro.comparator.repository.ProviderRepository;
 import com.oskarro.comparator.service.ProviderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +35,8 @@ public class ProviderGateway {
 
     @PostMapping("/")
     public ResponseEntity<Provider> create(@RequestBody Provider provider) {
-        if (provider.getId().isEmpty()) {
-            provider.setId(UUID.randomUUID().toString());
+        if (provider.getHash().isEmpty()) {
+            provider.setHash(UUID.randomUUID().toString());
         }
         Provider save = providerService.save(provider);
         return new ResponseEntity<>(save, HttpStatus.OK);

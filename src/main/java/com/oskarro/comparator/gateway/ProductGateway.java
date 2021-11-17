@@ -1,30 +1,31 @@
 package com.oskarro.comparator.gateway;
 
 import com.oskarro.comparator.model.Product;
-import com.oskarro.comparator.repository.ProductRepository;
+import com.oskarro.comparator.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/product")
 public class ProductGateway {
 
-    ProductRepository productRepository;
+    ProductService productService;
 
-    public ProductGateway(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductGateway(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping("/")
     public ResponseEntity<Iterable<Product>> getAll() {
-        return new ResponseEntity<>(productRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
 
     }
 
     @GetMapping("/{productId}")
     public ResponseEntity<Product> findById(@PathVariable final String productId) throws Exception {
-        Product product = productRepository
+        Product product = productService
                 .findById(productId)
                 .orElseThrow(Exception::new);
         return new ResponseEntity<>(product, HttpStatus.OK);
@@ -32,13 +33,13 @@ public class ProductGateway {
 
     @PostMapping("/")
     public ResponseEntity<Product> create(@RequestBody Product product) {
-        Product save = productRepository.save(product);
+        Product save = productService.save(product);
         return new ResponseEntity<>(save, HttpStatus.OK);
     }
 
     @DeleteMapping("/{productId}")
     public void delete(@PathVariable final String productId) {
-        productRepository.deleteById(productId);
+        productService.deleteById(productId);
     }
 
 

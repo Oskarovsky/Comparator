@@ -13,13 +13,13 @@ import java.util.UUID;
 public class AbstractBaseEntity implements Serializable {
 
     @Id
-    private String id;
+    private String hash;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public AbstractBaseEntity() {
-        this.id = UUID.randomUUID().toString();
+        this.hash = UUID.randomUUID().toString();
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }

@@ -1,7 +1,9 @@
 package com.oskarro.comparator;
 
+import com.oskarro.comparator.model.Item;
 import com.oskarro.comparator.model.Product;
 import com.oskarro.comparator.model.ProductType;
+import com.oskarro.comparator.repository.ItemRepository;
 import com.oskarro.comparator.repository.ProductRepository;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
@@ -13,7 +15,6 @@ import java.util.Optional;
 import java.util.Spliterator;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +24,9 @@ class ComparatorApplicationTests {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     @Test
     void shouldSaveProduct() {
@@ -105,6 +109,35 @@ class ComparatorApplicationTests {
         assertThat(products.size()).isGreaterThan(1);
         assertThat(products).extracting("name", "productType").contains(Tuple.tuple("PRODUCT FIND ALL 1", ProductType.FOOD));
         assertThat(products).extracting("name", "productType").contains(Tuple.tuple("PRODUCT FIND ALL 2", ProductType.OTHER));
+    }
+
+    @Test
+    void shouldFindItemByPrice() {
+        // GIVEN
+        Item item = new Item("123", "321", 1.5, false);
+
+        // WHEN
+        itemRepository.save(item);
+
+        // THEN
+        Iterable<Item> items = itemRepository.findByPriceEquals(1.5);
+        items.forEach(System.out::println);
+        assertThat(items).isNotNull();
+        assertThat(items).extracting("productId", "providerId").contains(Tuple.tuple("123", "321"));
+    }
+
+    @Test
+    void shouldFindItemsByProductId() {
+        // GIVEN
+        Item item = new Item("xxx", "567", 99.99, true);
+
+        // WHEN
+        itemRepository.save(item);
+
+        // THEN
+        Iterable<Item> items = itemRepository.findAllByProductHashEquals("xxx");
+        System.out.println(items);
+        assertThat(items).isNotNull();
     }
 
 
