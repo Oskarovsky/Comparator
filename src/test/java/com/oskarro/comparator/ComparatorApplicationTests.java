@@ -5,7 +5,11 @@ import com.oskarro.comparator.model.Product;
 import com.oskarro.comparator.model.ProductType;
 import com.oskarro.comparator.repository.ItemRepository;
 import com.oskarro.comparator.repository.ProductRepository;
+import com.oskarro.comparator.repository.ProviderRepository;
 import org.assertj.core.groups.Tuple;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +31,16 @@ class ComparatorApplicationTests {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    ProviderRepository providerRepository;
+
+    @BeforeEach
+    public void init() {
+        productRepository.deleteAll();
+        itemRepository.deleteAll();
+        providerRepository.deleteAll();
+    }
 
     @Test
     void shouldSaveProduct() {
