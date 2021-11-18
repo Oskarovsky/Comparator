@@ -24,10 +24,6 @@ public class ItemService extends AbstractBaseRepositoryBean<Item, String> {
         super(abstractBaseRepository);
     }
 
-    public Iterable<Item> findAllByProductIdOrderByPriceAsc(final String productId) {
-         return itemRepository.findByProductId(productId);
-    }
-
     public Iterable<Item> findByPricePromotion(final boolean isPromotion) {
         return itemRepository.findByPricePromotion(isPromotion);
     }
@@ -37,7 +33,7 @@ public class ItemService extends AbstractBaseRepositoryBean<Item, String> {
     }
 
     public Iterable<Item> findAllByProductId(String productId) {
-        return itemRepository.findByProductEquals(productId);
+        return itemRepository.findAllByProductHashEquals(productId);
     }
 
     public long count() {

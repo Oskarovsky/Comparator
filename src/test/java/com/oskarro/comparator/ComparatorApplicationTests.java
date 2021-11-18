@@ -123,7 +123,7 @@ class ComparatorApplicationTests {
         Iterable<Item> items = itemRepository.findByPriceEquals(1.5);
         items.forEach(System.out::println);
         assertThat(items).isNotNull();
-        assertThat(items).extracting("productId", "providerId").contains(Tuple.tuple("123", "321"));
+        assertThat(items).extracting("productHash", "providerHash").contains(Tuple.tuple("123", "321"));
     }
 
     @Test

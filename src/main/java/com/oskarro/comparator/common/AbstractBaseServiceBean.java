@@ -20,11 +20,6 @@ public abstract class AbstractBaseServiceBean<T extends AbstractBaseEntity, ID e
     }
 
     @Override
-    public T save(T entity) {
-        return (T) abstractBaseRepository.save(entity);
-    }
-
-    @Override
     public Iterable<T> findAll() {
         return abstractBaseRepository.findAll();
     }
@@ -32,6 +27,26 @@ public abstract class AbstractBaseServiceBean<T extends AbstractBaseEntity, ID e
     @Override
     public Optional<T> findById(ID entityId) {
         return abstractBaseRepository.findById(entityId);
+    }
+
+    @Override
+    public Iterable<T> findAllById(Iterable<ID> ids) {
+        return abstractBaseRepository.findAllById(ids);
+    }
+
+    @Override
+    public boolean existsById(ID id) {
+        return abstractBaseRepository.existsById(id);
+    }
+
+    @Override
+    public T save(T entity) {
+        return (T) abstractBaseRepository.save(entity);
+    }
+
+    @Override
+    public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
+        return abstractBaseRepository.saveAll(entities);
     }
 
     @Override
@@ -50,6 +65,16 @@ public abstract class AbstractBaseServiceBean<T extends AbstractBaseEntity, ID e
     }
 
     @Override
+    public void deleteAll() {
+        abstractBaseRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends ID> ids) {
+        abstractBaseRepository.deleteAllById(ids);
+    }
+
+    @Override
     public void delete(T entity) {
         abstractBaseRepository.delete(entity);
     }
@@ -57,6 +82,11 @@ public abstract class AbstractBaseServiceBean<T extends AbstractBaseEntity, ID e
     @Override
     public void deleteById(ID entityId) {
         abstractBaseRepository.deleteById(entityId);
+    }
+
+    @Override
+    public long count() {
+        return abstractBaseRepository.count();
     }
 
 }
