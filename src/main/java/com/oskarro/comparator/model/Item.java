@@ -21,7 +21,6 @@ public class Item extends AbstractBaseEntity {
     private String productHash;
     private String providerHash;
     private boolean isPricePromotion;
-    @Indexed
     private Double price;
 
 
