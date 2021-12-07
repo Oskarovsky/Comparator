@@ -1,5 +1,6 @@
 package com.oskarro.comparator.services;
 
+import com.oskarro.comparator.model.Measure;
 import com.oskarro.comparator.model.Product;
 import com.oskarro.comparator.model.ProductType;
 import com.oskarro.comparator.service.ProductService;
@@ -9,10 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Spliterator;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -29,11 +27,10 @@ class ProductServiceTest {
         productService.deleteAll();
     }
 
-
     @Test
     void shouldSaveProduct() {
         // GIVEN
-        Product product = new Product(UUID.randomUUID().toString(), "PRODUCT CREATE", 1.5, ProductType.FOOD);
+        Product product = new Product(UUID.randomUUID().toString(), "PRODUCT CREATE", 100, Measure.G, ProductType.FOOD);
 
         // WHEN
         Product saved = productService.save(product);
@@ -47,7 +44,7 @@ class ProductServiceTest {
     void shouldGetSavedProduct() {
         // GIVEN
         String id = UUID.randomUUID().toString();
-        Product product = new Product(id, "PRODUCT GET", 1.5, ProductType.FOOD);
+        Product product = new Product(id, "PRODUCT GET", 15, Measure.G, ProductType.FOOD);
 
         // WHEN
         productService.save(product);
@@ -65,7 +62,7 @@ class ProductServiceTest {
     void shouldUpdateSavedProduct() {
         // GIVEN
         String id = UUID.randomUUID().toString();
-        Product product = new Product(id, "PRODUCT UPDATE", 1.5, ProductType.FOOD);
+        Product product = new Product(id, "PRODUCT UPDATE", 5, Measure.KG, ProductType.FOOD);
 
         // WHEN
         Product saved = productService.save(product);
@@ -85,7 +82,7 @@ class ProductServiceTest {
     void shouldDeleteSavedProduct() {
         // GIVEN
         String id = UUID.randomUUID().toString();
-        Product product = new Product(id, "PRODUCT DELETE", 1.5, ProductType.FOOD);
+        Product product = new Product(id, "PRODUCT DELETE", 20, Measure.G, ProductType.FOOD);
 
         // WHEN
         productService.save(product);
@@ -98,8 +95,8 @@ class ProductServiceTest {
     @Test
     void shouldFindAllProduct() {
         // GIVEN
-        Product productOne = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 1", 1.5, ProductType.FOOD);
-        Product productTwo = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 2", 1.5, ProductType.OTHER);
+        Product productOne = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 1", 40, Measure.G, ProductType.FOOD);
+        Product productTwo = new Product(UUID.randomUUID().toString(), "PRODUCT FIND ALL 2", 50, Measure.G, ProductType.OTHER);
 
         // WHEN
         productService.save(productOne);

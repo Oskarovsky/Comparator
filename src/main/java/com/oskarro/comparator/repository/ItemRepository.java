@@ -13,7 +13,7 @@ public interface ItemRepository extends AbstractBaseRepository<Item, String> {
 
     Iterable<Item> findByPricePromotion(boolean isPromotion);
 
-    Iterable<Item> findByPriceEquals(Double price);
+    Iterable<Item> findByPriceEquals(String price);
 
     Iterable<Item> findAllByProductHashEquals(String productHash);
     Iterable<Item> findAllByProviderHashEquals(String providerHash);

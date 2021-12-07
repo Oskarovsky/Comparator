@@ -2,7 +2,7 @@ package com.oskarro.comparator.model;
 
 public enum ComparisonOperator {
 
-    LT("<"), GT(">"), EQ("=="), LE("<="), GE("=<");
+    LT("<"), GT(">"), EQ("=="), LTE("<="), GTE("=<");
 
     private final String mark;
 

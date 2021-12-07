@@ -1,6 +1,7 @@
 package com.oskarro.comparator.repository;
 
 import com.oskarro.comparator.common.AbstractBaseRepository;
+import com.oskarro.comparator.model.Item;
 import com.oskarro.comparator.model.Product;
 import org.springframework.stereotype.Repository;
 
