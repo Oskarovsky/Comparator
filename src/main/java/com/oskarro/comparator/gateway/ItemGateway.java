@@ -51,7 +51,7 @@ public class ItemGateway {
 
     @RequestMapping(method = RequestMethod.GET, value = "/filter")
     public ResponseEntity<Iterable<Item>> getItemsByProductId(@RequestParam final String productId) {
-        return new ResponseEntity<>(itemService.findAllByProductId(productId), HttpStatus.OK);
+        return new ResponseEntity<>(itemService.getAllByProductId(productId), HttpStatus.OK);
     }
 
 

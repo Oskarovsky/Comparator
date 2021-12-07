@@ -19,15 +19,18 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.1'
     implementation group: 'org.springframework.data', name: 'spring-data-redis', version: '2.3.4.RELEASE'
     implementation group: 'redis.clients', name: 'jedis', version: '3.3.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.5.6'
     implementation 'org.modelmapper:modelmapper:2.4.4'
-    implementation 'junit:junit:4.13.1'
+    implementation 'junit:junit:4.13.2'
+
     compileOnly 'org.projectlombok:lombok:1.18.22'
+
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.1'
 }
 
 
