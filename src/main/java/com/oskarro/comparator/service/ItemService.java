@@ -2,6 +2,7 @@ package com.oskarro.comparator.service;
 
 import com.oskarro.comparator.common.AbstractBaseRepository;
 import com.oskarro.comparator.common.AbstractBaseRepositoryBean;
+import com.oskarro.comparator.common.JedisCommon;
 import com.oskarro.comparator.exception.ResourceNotFoundException;
 import com.oskarro.comparator.model.ComparisonOperator;
 import com.oskarro.comparator.model.Item;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 @Service
 @Transactional
@@ -17,6 +19,9 @@ public class ItemService extends AbstractBaseRepositoryBean<Item, String> {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private JedisCommon jedisCommon;
 
     @Autowired
     public ItemService(ItemRepository itemRepository) {
@@ -40,10 +45,6 @@ public class ItemService extends AbstractBaseRepositoryBean<Item, String> {
     }
 
     public Iterable<Item> getProductsByPriceComparison(final String price, final ComparisonOperator operator) {
-        Jedis jedis = new Jedis();
-        jedis.set("events:city:rome", "32,15,223,828");
-        String cachedResponse = jedis.get("events/city/rome");
-        System.out.println(cachedResponse);
         switch (operator) {
             case EQ:
                 return itemRepository.findByPriceEquals(price);

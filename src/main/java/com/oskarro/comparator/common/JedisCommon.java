@@ -70,4 +70,18 @@ public class JedisCommon {
         }
         // Return connection
     }
+
+    public void lpush(String listKey, String... values) {
+        Jedis jedis = jedisPool.getResource();
+        jedis.lpush(listKey, values);
+    }
+
+    public String rpop(String listKey) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.rpop(listKey);
+        } catch (Exception e) {
+            return "-1";
+        }
+    }
+
 }
